@@ -1,13 +1,3 @@
-/*
-GAME RULES:
-
-- The game has 2 players, playing in rounds
-- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
-- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
-- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
-
-*/
 
 const img1 = './dice-1.png';
 const img2 = './dice-2.png';
@@ -15,6 +5,8 @@ const img3 = './dice-3.png';
 const img4 = './dice-4.png';
 const img5 = './dice-5.png';
 const img6 = './dice-6.png';
+
+const scoreInput = document.querySelector('#input-score');
 
 const playerPanel1 = document.querySelector('.player-0-panel');
 const playerPanel2 = document.querySelector('.player-1-panel');
@@ -43,6 +35,14 @@ var numArrayPlayer2 = [];
 // eindscores array
 var eindscoreArray1 = [];
 var eindScoreArray2 = [];
+
+var winnerScore;
+
+scoreInput.addEventListener('change', function(event){
+  event.preventDefault();
+  const score = event.target.value;
+  winnerScore = score;
+});
 
 startBtn.addEventListener('click', function(event){
   showDobbelsteen();
@@ -86,6 +86,9 @@ holdBtn.addEventListener('click', function(event){
       return totalScore + number;
     }, 0);
     eindScore1.innerHTML = scoreTotal;
+    if(scoreTotal >= winnerScore){
+      alert('You won!');
+    }
     player1Active = false;
     playerPanel2.classList.add('.active');
   } else {
@@ -96,6 +99,9 @@ holdBtn.addEventListener('click', function(event){
       return totalScore + number;
     }, 0);
     eindScore2.innerHTML = scoreTotal;
+    if(scoreTotal >= 100){
+      alert('You won!');
+    };
     player1Active = true;
     playerPanel1.classList.add('.active');
   };
@@ -126,3 +132,13 @@ function clearAllScores(){
   eindScoreArray2 = [];
   dobbelsteenImg.style.display = 'none';
 };
+
+
+/*
+YOUR 3 CHALLENGES
+Change the game to follow these rules:
+
+1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
+2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
+3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice, so take a look at the CSS code for the first one.)
+*/
