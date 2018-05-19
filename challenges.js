@@ -20,11 +20,16 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
         // 1. Random number
         var dice = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
 
         //2. Display the result
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
+
+        var diceDOM2 = document.querySelector('.dice-2');
+        diceDOM2.style.display = 'block';
+        diceDOM2.src = 'dice-' + dice2 + '.png';
 
 
         //3. Update the round score IF the rolled number was NOT a 1
@@ -33,12 +38,14 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
           scores[activePlayer] = 0;
           document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
           nextPlayer();
-        } else if (dice !== 1) {
+          alert('two times 6 in a row; next player!');
+        } else if (dice !== 1 && dice2 !== 1) {
             //Add score
-            roundScore += dice;
+            roundScore += (dice + dice2);
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             //Next player
+            alert('Aiii you rolled 1; too bad, turn to next player');
             nextPlayer();
         }
 
@@ -85,7 +92,8 @@ function nextPlayer() {
     //document.querySelector('.player-0-panel').classList.remove('active');
     //document.querySelector('.player-1-panel').classList.add('active');
 
-    document.querySelector('.dice').style.display = 'none';
+    // document.querySelector('.dice').style.display = 'none';
+    // document.querySelector('.dice-2').style.display = 'none';
 }
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -99,6 +107,7 @@ function init() {
     scoreInput.style.display = 'inline';
 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice-2').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
