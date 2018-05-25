@@ -1,3 +1,5 @@
+console.log(this);
+
 const scoreInput = document.querySelector('#input-score');
 const scoreOutput = document.querySelector('.final-score');
 
