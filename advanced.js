@@ -92,3 +92,24 @@ function interviewQuestion(job){
 
 var designerQuestion = interviewQuestion('designer');
 designerQuestion('lilian');
+
+const krien = {
+  name: 'Carine',
+  age: 60,
+  job: 'mom',
+  testfunction: function(){
+    console.log('test function to call and bind' + this.name + this.age);
+  }
+}
+
+const lilian = {
+  name: 'lilian',
+  age: 27,
+  job: 'developer'
+};
+
+krien.testfunction();
+
+krien.testfunction.call(lilian);
+const bindFunction = krien.testfunction.bind(lilian);
+bindFunction();
