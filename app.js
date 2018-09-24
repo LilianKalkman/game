@@ -54,6 +54,8 @@ startBtn.addEventListener('click', function(event){
 function showDobbelsteen(){
   // dobbelsteen laten zien
   dobbelsteenImg.style.display = 'block';
+  dobbelsteenImg2.style.display = 'block';
+  
   const randomNum = Math.floor(Math.random() * 6) + 1;
   const randomNum2 = Math.floor(Math.random() * 6) + 1;
 
@@ -141,6 +143,7 @@ function clearAllScores(){
   eindscoreArray1 = [];
   eindScoreArray2 = [];
   dobbelsteenImg.style.display = 'none';
+  dobbelsteenImg2.style.display = 'none';
 };
 
 
