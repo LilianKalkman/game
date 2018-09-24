@@ -28,7 +28,7 @@ function showAnswer(){
   var useranswer = prompt('What answer do you choose? Enter 0 or 1');
    return function logAnswer(question){
     if(useranswer == question){
-      console.log('Correct Answer!')
+      console.log('Correct Answer!');
     } else {
       console.log('Answer is not correct, refresh page');
     }

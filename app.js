@@ -12,6 +12,8 @@ const playerPanel1 = document.querySelector('.player-0-panel');
 const playerPanel2 = document.querySelector('.player-1-panel');
 
 var dobbelsteenImg = document.querySelector('.dice');
+var dobbelsteenImg2 = document.querySelector('.dice-2');
+
 const startBtn = document.querySelector('.btn-roll');
 
 const holdBtn = document.querySelector('.btn-hold');
@@ -53,22 +55,30 @@ function showDobbelsteen(){
   // dobbelsteen laten zien
   dobbelsteenImg.style.display = 'block';
   const randomNum = Math.floor(Math.random() * 6) + 1;
+  const randomNum2 = Math.floor(Math.random() * 6) + 1;
 
   const images = [img1, img2, img3, img4, img5, img6];
+
   const match = images.find(function(item){
     return item.includes(randomNum);
   });
+
+  const match2 = images.find(function(item){
+    return item.includes(randomNum2);
+  });
+
   dobbelsteenImg.src = match;
+  dobbelsteenImg2.src = match2;
 
   // current score bijwerken
   if(player1Active){
-    numArrayPlayer1.push(randomNum);
+    numArrayPlayer1.push(randomNum + randomNum2);
     const score = numArrayPlayer1.reduce(function(totalScore, number){
       return totalScore + number;
     }, 0);
     currentScore1.textContent = score;
   } else {
-    numArrayPlayer2.push(randomNum);
+    numArrayPlayer2.push(randomNum + randomNum2);
     const score = numArrayPlayer2.reduce(function(totalScore, number){
       return totalScore + number;
     }, 0);
