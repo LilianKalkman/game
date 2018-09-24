@@ -59,6 +59,7 @@ function global(){
   var x = 10;
   var number = local();
   console.log(number);
+  // je number is nu 4
   function local(){
     console.log( x + 'local');
     var n = 2 + 2;
@@ -111,5 +112,8 @@ const lilian = {
 krien.testfunction();
 
 krien.testfunction.call(lilian);
+// hier direct callen
+
 const bindFunction = krien.testfunction.bind(lilian);
+// hier bind je hem aan een nieuw object (lilian) vast om te roepen wanneer je wilt; je maakt er eigenlijk een prototype van
 bindFunction();
